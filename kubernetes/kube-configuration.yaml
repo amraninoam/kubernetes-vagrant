@@ -1,0 +1,20 @@
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: ipvs
+# ipvs:
+#   scheduler: lc
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+bootstrapTokens:
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 10.1.0.101
+nodeRegistration:
+  criSocket: "unix:///var/run/cri-dockerd.sock"
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+kubernetesVersion: v1.24.4
+networking:
+  podSubnet: 10.2.0.0/16
+  #serviceSubnet: 10.96.0.0/12

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: sleep-server
+        image: natalicot/sleep-server:1.0.4
+        ports:
+        - name: http
+          containerPort: 8080
+      # - name: python-http-server
+      #   image: python:2.7
+      #   command: ["/bin/bash"]
+      #   args: ["-c", "echo \" Hello from $(hostname)\" > index.html; python -m SimpleHTTPServer 80"]
+      #   ports:
+      #   - name: http
+      #     containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: web
+spec:
+  selector:
+    app: web
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
