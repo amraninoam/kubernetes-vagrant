@@ -1,5 +1,8 @@
 #!/bin/bash
-https://kubernetes.io/docs/setup/production-environment/container-runtimes/#forwarding-ipv4-and-letting-iptables-see-bridged-traffic
+apt update
+apt install ipset -y
+
+#https://kubernetes.io/docs/setup/production-environment/container-runtimes/#forwarding-ipv4-and-letting-iptables-see-bridged-traffic
 modprobe br_netfilter
 cat <<EOF | tee /etc/modules-load.d/k8s.conf
   overlay
