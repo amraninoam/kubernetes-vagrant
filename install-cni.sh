@@ -15,6 +15,8 @@ then
     # Apply Calico.
     echo Applying Calico...
     kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.0/manifests/tigera-operator.yaml
+    # Wait for CRD to be available...
+    kubectl wait --for condition=established --timeout=60s crd installations.operator.tigera.io -n tigera-operator
     # update pod cidr
     sed -r "s|^(\s*)(cidr)(.*)|\1cidr: $POD_NETWORK_CIDR|gm" /vagrant/cni/calico.yaml > /vagrant/cni/calico.yaml.used
     kubectl apply -f /vagrant/cni/calico.yaml.used
