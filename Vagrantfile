@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
   KUBE_CNI = ENV['KUBE_CNI']
   KUBE_CRI = ENV['KUBE_CRI']
   NODE_API_PORT = ENV['NODE_API_PORT']
+  KUBERNETES_VERSION = ENV['KUBERNETES_VERSION']
 
   # set variables
   master_node_ip = ''
@@ -32,7 +33,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", path: "pre.sh"
   config.vm.provision "shell", path: "install-cri.sh", env: {"KUBE_CRI" => "#{KUBE_CRI}"}
-  config.vm.provision "shell", path: "install-kube-tools.sh"
+  config.vm.provision "shell", path: "install-kube-tools.sh", env: {"KUBERNETES_VERSION" => "#{KUBERNETES_VERSION}"}
+
   # install ipvs 
   if KUBE_PROXY_MODE.downcase == 'ipvs' 
     config.vm.provision "shell", path: "install-ipvs.sh"
@@ -53,7 +55,8 @@ Vagrant.configure("2") do |config|
         "NODE_API_PORT" => "#{NODE_API_PORT}",
         "POD_NETWORK_CIDR" => "#{POD_NETWORK_CIDR}",
         "KUBE_PROXY_MODE" => "#{KUBE_PROXY_MODE}",
-        "KUBE_CRI" => "#{KUBE_CRI}"
+        "KUBE_CRI" => "#{KUBE_CRI}",
+        "KUBERNETES_VERSION" => "#{KUBERNETES_VERSION}"
       }
 
       # prepare kubectl for vagrant user

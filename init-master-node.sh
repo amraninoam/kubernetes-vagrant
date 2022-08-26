@@ -7,6 +7,7 @@ sed -ri "s|^(\s*)(advertiseAddress)(.*)|\1advertiseAddress: $NODE_IP|gm" /vagran
 sed -ri "s|^(\s*)(podSubnet)(.*)|\1podSubnet: $POD_NETWORK_CIDR|gm" /vagrant/kubernetes/kube-configuration.yaml.used
 sed -ri "s|^(\s*)(mode)(.*)|\1mode: $KUBE_PROXY_MODE|gm" /vagrant/kubernetes/kube-configuration.yaml.used
 sed -ri "s|^(\s*)(bindPort)(.*)|\1bindPort: $NODE_API_PORT|gm" /vagrant/kubernetes/kube-configuration.yaml.used
+sed -ri "s|^(\s*)(kubernetesVersion)(.*)|\1kubernetesVersion: v$KUBERNETES_VERSION|gm" /vagrant/kubernetes/kube-configuration.yaml.used
 
 if [ "$KUBE_PROXY_MODE" == "ipvs" ]
 then

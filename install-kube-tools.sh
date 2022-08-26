@@ -16,8 +16,8 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 apt-get update
 
 # Install kubelet, kubeadm and kubectl.
-apt-get install -y kubelet kubeadm kubectl
-
+apt-get install -y kubelet=$KUBERNETES_VERSION* kubeadm=$KUBERNETES_VERSION* kubectl=$KUBERNETES_VERSION*
+sudo apt-mark hold kubelet kubeadm kubectl
 # Turn off swap for kubeadm.
 swapoff -a
 sed -i '/swap/d' /etc/fstab
