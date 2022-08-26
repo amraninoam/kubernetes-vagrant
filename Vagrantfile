@@ -56,7 +56,8 @@ Vagrant.configure("2") do |config|
         "POD_NETWORK_CIDR" => "#{POD_NETWORK_CIDR}",
         "KUBE_PROXY_MODE" => "#{KUBE_PROXY_MODE}",
         "KUBE_CRI" => "#{KUBE_CRI}",
-        "KUBERNETES_VERSION" => "#{KUBERNETES_VERSION}"
+        "KUBERNETES_VERSION" => "#{KUBERNETES_VERSION}",
+        "KUBE_CNI" => "#{KUBE_CNI}"
       }
 
       # prepare kubectl for vagrant user

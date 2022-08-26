@@ -27,8 +27,13 @@ sed -ri "s|^(\s*)(criSocket)(.*)|\1criSocket: \"$CRI_SOCKET\"|gm" /vagrant/kuber
 
 
 echo "Environment='KUBELET_EXTRA_ARGS=--node-ip=$NODE_IP'" | tee -a /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-# Install kubernetes via kubeadm.
-kubeadm init --config=/vagrant/kubernetes/kube-configuration.yaml.used
+# Skip installing kube-proxy is not needed
+if [[ $KUBE_CNI = *no_kube_proxy* ]]
+then
+  skip=--skip-phases=addon/kube-proxy
+fi
+
+kubeadm init $skip --config=/vagrant/kubernetes/kube-configuration.yaml.used
 rm /vagrant/kubernetes/kube-configuration.yaml.used
 
 # Hostname -i must return a routable address on second (non-NATed) network interface.
