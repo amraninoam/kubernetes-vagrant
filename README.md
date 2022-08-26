@@ -7,6 +7,7 @@ Deploy a Kubernetes cluster using Vagrant.
 - [Kubernetes Vagrant](#kubernetes-vagrant)
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
+- [Requirements](#requirements)
 - [Before Start](#before-start)
 - [Example Usage](#example-usage)
 - [FAQ](#faq)
@@ -14,14 +15,18 @@ Deploy a Kubernetes cluster using Vagrant.
 # Overview
 
 - *Image:* bento/ubuntu-22.04 
-- *Docker Version: latest
-- *Kubelet Version:* latest
-- *Kubectl Version:* latest
-- *Kubeadm Version:* latest
-- *CNI:* Flannel / Calico / None (latest version)
-- *Kube-Proxy* mode: iptables / ipvs (see kube-configuration for ipvs algorithm)
-# Before Start
+- *Docker Version:* latest
+- *Kubelet Version:* 1.25
+- *Kubectl Version:* 1.25
+- *Kubeadm Version:* 1.25
+- *CNI:* Flannel | Calico | Cilium (w/ & w/o kubeproxy) | None (latest version)
+- *Kube-Proxy* mode: iptables | ipvs (see kube-configuration for ipvs algorithm)
+# Requirements
+- Install Vagrant: https://www.vagrantup.com/docs/installation
+- Install VirtualBox: https://www.virtualbox.org/wiki/Downloads
 
+If you're using windows, I suggest installing the above using Chocolatey: https://chocolatey.org/
+# Before Start
 ```bash
 # Install the plugin for Vagrant to ability to use environment files.
 $ vagrant plugin install vagrant-env
