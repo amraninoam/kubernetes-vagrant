@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
   KUBE_PROXY_MODE = ENV['KUBE_PROXY_MODE']
   KUBE_CNI = ENV['KUBE_CNI']
   KUBE_CRI = ENV['KUBE_CRI']
+  NODE_API_PORT = ENV['NODE_API_PORT']
 
   # set variables
   master_node_ip = ''
@@ -49,6 +50,7 @@ Vagrant.configure("2") do |config|
       # init master node.
       master.vm.provision "shell", path: "init-master-node.sh", env: {
         "NODE_IP" => "#{master_node_ip}",
+        "NODE_API_PORT" => "#{NODE_API_PORT}",
         "POD_NETWORK_CIDR" => "#{POD_NETWORK_CIDR}",
         "KUBE_PROXY_MODE" => "#{KUBE_PROXY_MODE}",
         "KUBE_CRI" => "#{KUBE_CRI}"
@@ -64,6 +66,8 @@ Vagrant.configure("2") do |config|
       master.vm.provision "shell", path: "install-cni.sh", env: {
         "KUBE_CNI" => "#{KUBE_CNI}",
         "POD_NETWORK_CIDR" => "#{POD_NETWORK_CIDR}",
+        "NODE_IP" => "#{master_node_ip}",
+        "NODE_API_PORT" => "#{NODE_API_PORT}"
       }
 
       # install app.

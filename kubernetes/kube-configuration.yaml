@@ -9,6 +9,7 @@ bootstrapTokens:
 kind: InitConfiguration
 localAPIEndpoint:
   advertiseAddress: 10.1.0.101
+  bindPort: 6443
 nodeRegistration:
   criSocket: "unix:///var/run/cri-dockerd.sock"
 ---
