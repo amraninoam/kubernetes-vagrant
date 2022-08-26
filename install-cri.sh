@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 echo Applying CRI... got "$KUBE_CRI"
 if [ "$KUBE_CRI" == "docker" ]
 then

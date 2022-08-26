@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 apt install ipset ipvsadm -y
 modprobe ip_vs

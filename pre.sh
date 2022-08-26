@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Update apt registry.
 apt-get update

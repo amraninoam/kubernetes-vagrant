@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Replace advertising address with $NODE_IP
 cp /vagrant/kubernetes/kube-configuration.yaml /vagrant/kubernetes/kube-configuration.yaml.used

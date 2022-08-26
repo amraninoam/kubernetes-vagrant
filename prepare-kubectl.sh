@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Prepare kubectl.
 sudo mkdir -p $HOME/.kube

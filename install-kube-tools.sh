@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Install packages to allow apt to use a repository over HTTPS
 apt-get install -y apt-transport-https curl

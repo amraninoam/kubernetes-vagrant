@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Join kubernetes cluster.
 /vagrant/join.sh

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 #Install containerd
 export CD_VERSION=1.6.8

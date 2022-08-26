@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 echo Applying CNI... got "$KUBE_CNI"
 if [ "$KUBE_CNI" == "flannel" ]
 then

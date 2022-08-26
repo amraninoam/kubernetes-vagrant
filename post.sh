@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Clear apt cache.
 apt-get clean
